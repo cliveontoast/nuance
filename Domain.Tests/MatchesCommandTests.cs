@@ -50,6 +50,11 @@ namespace Domain.Tests
         [TestMethod]
         [DataRow(@"hello
 hello", "lo", 3, 10)]
+        [DataRow(@"kciuqquick{
+quick!@#$%^&*()ä
+quick!@#$%^&*()a
+quick!@#$%^&*()a
+quick!@#$%^&*()ä", "quick!@#$%^&*()a", 29, 46)]
         public void MatchesCommand_MultiLine_Success(object text, params object[] subtext)
         {
             MatchCommandResults(text, subtext);

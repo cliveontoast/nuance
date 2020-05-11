@@ -11,6 +11,6 @@ namespace Entities
 
     public enum MatchResultErrorEnum
     {
-        SubtextNullOrEmpty,
+        SubtextNullOrEmpty = 1,
     }
 }
