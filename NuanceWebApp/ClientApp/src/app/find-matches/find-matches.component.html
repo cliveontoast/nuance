@@ -1,0 +1,46 @@
+<h1 id="tableLabel">Find Matches</h1>
+
+<p>
+  Matches the subtext against the text, outputting the character
+  positions of the beginning of each match for the subtext within the text.
+</p>
+
+<div>
+  <!--<div class="row">
+    <label class="col-2">Text: </label>
+    <input class="col form-control" maxlength="2000" type="text" [(ngModel)]="text" />
+  </div>-->
+  <div class="form-group">
+    <label for="subTextInput">Subtext</label>
+    <input class="form-control" id="subTextInput"
+           placeholder="Enter subtext"
+           maxlength="2000" type="text" [(ngModel)]="subText" />
+    <small id="subTextHelp" class="form-text text-muted">Search for this subtext in the text below.</small>
+  </div>
+  <div class="form-group">
+    <label for="textInput">Text to search</label>
+    <textarea class="form-control" id="textInput"
+              rows="3"
+              placeholder="Enter text" maxlength="2000" type="text" [(ngModel)]="text"></textarea>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-primary" (click)="search()">Search</button>
+  </div>
+</div>
+
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts?.characterPositions.length > 0">
+  <thead>
+    <tr>
+      <th>Character positions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let subtextMatch of forecasts.characterPositions">
+      <td>{{ subtextMatch }}</td>
+    </tr>
+  </tbody>
+</table>
+<span *ngIf="forecasts?.characterPositions.length == 0">
+  Not found
+</span>
