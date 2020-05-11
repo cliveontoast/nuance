@@ -4,5 +4,5 @@ export interface MatchesDto {
 }
 
 export enum MatchesErrorType {
-  SubtextNullOrEmpty
+  SubtextNullOrEmpty = 1
 }

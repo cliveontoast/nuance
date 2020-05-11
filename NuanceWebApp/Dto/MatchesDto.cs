@@ -19,6 +19,6 @@ namespace NuanceWebApp.Dto
 
     public enum MatchesErrorType
     {
-        SubtextNullOrEmpty,
+        SubtextNullOrEmpty = 1,
     }
 }
