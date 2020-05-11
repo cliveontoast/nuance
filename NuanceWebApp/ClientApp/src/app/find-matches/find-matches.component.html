@@ -6,10 +6,6 @@
 </p>
 
 <div>
-  <!--<div class="row">
-    <label class="col-2">Text: </label>
-    <input class="col form-control" maxlength="2000" type="text" [(ngModel)]="text" />
-  </div>-->
   <div class="form-group">
     <label for="subTextInput">Subtext</label>
     <input class="form-control" id="subTextInput"
@@ -29,18 +25,24 @@
 </div>
 
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts?.characterPositions.length > 0">
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="matches?.characterPositions?.length > 0">
   <thead>
     <tr>
       <th>Character positions</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let subtextMatch of forecasts.characterPositions">
+    <tr *ngFor="let subtextMatch of matches.characterPositions">
       <td>{{ subtextMatch }}</td>
     </tr>
   </tbody>
 </table>
-<span *ngIf="forecasts?.characterPositions.length == 0">
+<span *ngIf="matches?.characterPositions?.length === 0">
   Not found
+</span>
+<span *ngIf="matches?.errorType">
+  Error
+</span>
+<span *ngIf="!matches">
+  Server Error
 </span>

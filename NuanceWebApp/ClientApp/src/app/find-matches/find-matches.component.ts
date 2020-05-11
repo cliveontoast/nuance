@@ -1,22 +1,24 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MatchesDto, MatchesErrorType } from '../../dto/matchesDto';
 
 @Component({
   selector: 'app-find-matches',
   templateUrl: './find-matches.component.html'
 })
 export class FindMatchesComponent {
-  public forecasts: MatchesDto;
+  public matches: MatchesDto = {};
   public text: string;
   public subText: string;
   private http: HttpClient;
   private baseUrl: string;
+  public serverError: MatchesErrorType.ServerError;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;
     this.baseUrl = baseUrl;
-    this.text = "subtext";
-    this.subText = "Text";
+    this.text = "";
+    this.subText = "";
   }
 
   public search() {
@@ -27,19 +29,10 @@ export class FindMatchesComponent {
           subText: this.subText
         }
       })
-      //http.get<MatchesDto[]>('https://localhost:44398/api/SubtextMatch?text=hello%20hello&subText=e',)
       .subscribe(result => {
-        this.forecasts = result;
-        result.characterPositions.length > 0
-      }, error => this.forecasts = null);
+        this.matches = result;
+      }, () => {
+          this.matches = null;
+      });
   }
-}
-
-export interface MatchesDto {
-  characterPositions?: number[];
-  error?: MatchesErrorType;
-}
-
-export enum MatchesErrorType {
-  SubtextNullOrEmpty
 }
