@@ -54,7 +54,7 @@ describe('CounterComponent', () => {
 
     expect(req.request.method).toBe('GET');
     expect(component.matches.characterPositions).toEqual(result.characterPositions);
-    expect(component.matches.error).toEqual(result.error);
+    expect(component.matches.errorType).toEqual(result.errorType);
   }));
 
   it('should display no match', async(() => {

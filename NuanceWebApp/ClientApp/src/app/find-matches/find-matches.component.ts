@@ -12,7 +12,6 @@ export class FindMatchesComponent {
   public subText: string;
   private http: HttpClient;
   private baseUrl: string;
-  public serverError: MatchesErrorType.ServerError;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.http = http;

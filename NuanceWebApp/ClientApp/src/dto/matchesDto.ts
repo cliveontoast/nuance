@@ -1,9 +1,8 @@
 export interface MatchesDto {
   characterPositions?: number[];
-  error?: MatchesErrorType;
+  errorType?: MatchesErrorType;
 }
 
 export enum MatchesErrorType {
-  SubtextNullOrEmpty,
-  ServerError
+  SubtextNullOrEmpty
 }
