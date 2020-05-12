@@ -1,6 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { MatchesDto, MatchesErrorType } from '../../dto/matchesDto';
+import { Component } from '@angular/core';
+import { MatchesDto } from '../dto/matchesDto';
+import { SubtextMatchService } from '../services/subtextMatch.service';
 
 @Component({
   selector: 'app-find-matches',
@@ -8,30 +8,16 @@ import { MatchesDto, MatchesErrorType } from '../../dto/matchesDto';
 })
 export class FindMatchesComponent {
   public matches: MatchesDto = {};
-  public text: string;
-  public subText: string;
-  private http: HttpClient;
-  private baseUrl: string;
-
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    this.http = http;
-    this.baseUrl = baseUrl;
-    this.text = "";
-    this.subText = "";
-  }
+  public text: string = "";
+  public subText: string = "";
+  
+  constructor(private subtextMatchService: SubtextMatchService) { }
 
   public search() {
-    this.http.get<MatchesDto>(this.baseUrl + 'api/SubtextMatch',
-      {
-        params: {
-          text: this.text,
-          subText: this.subText
-        }
-      })
-      .subscribe(result => {
-        this.matches = result;
-      }, () => {
-          this.matches = null;
-      });
+    this.subtextMatchService.matches(this.text, this.subText)
+      .subscribe(
+        result => this.matches = result,
+        () => this.matches = null
+      );
   }
 }

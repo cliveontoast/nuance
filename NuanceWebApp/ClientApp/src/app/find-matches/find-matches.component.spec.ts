@@ -3,7 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { FindMatchesComponent } from './find-matches.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Type } from '@angular/core';
-import { MatchesDto } from '../../dto/matchesDto';
+import { MatchesDto } from '../dto/matchesDto';
+import { SubtextMatchService } from '../services/subtextMatch.service';
 
 describe('CounterComponent', () => {
   let component: FindMatchesComponent;
@@ -18,6 +19,7 @@ describe('CounterComponent', () => {
         HttpClientTestingModule
       ],
       providers: [
+        SubtextMatchService,
         { provide: 'BASE_URL', useValue: 'baseUrl/' }
       ]
     })

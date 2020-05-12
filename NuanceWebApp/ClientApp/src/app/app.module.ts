@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { FindMatchesComponent } from './find-matches/find-matches.component';
+import { SubtextMatchService } from './services/subtextMatch.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { FindMatchesComponent } from './find-matches/find-matches.component';
       { path: '**', component: FindMatchesComponent }
     ])
   ],
-  providers: [],
+  providers: [SubtextMatchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
